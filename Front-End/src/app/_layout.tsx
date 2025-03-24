@@ -1,3 +1,4 @@
+import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import "../styles/global.css"
 
@@ -8,5 +9,6 @@ export default function RootLayout() {
   return <>
   <Navbar />
   <Slot />
+  <Footer/>
 </>
 }
