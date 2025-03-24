@@ -1,6 +1,5 @@
 import React from "react";
-import { Button, Image, TouchableOpacity, View, Text } from "react-native";
-import tw from "twrnc";
+import { Image, View, Text } from "react-native";
 
 export default function Banner() {
     return (
