@@ -1,9 +1,10 @@
 import { Text, View } from "react-native";
+import Banner from "../components/banner";
 
 export default function Index() {
   return (
-    <View className="mt-10 flex justify-center items-center">
-      <Text>teste</Text>
+    <View className="mt-0">
+      <Banner/>
     </View>
   );
 }
