@@ -3,7 +3,7 @@ import { z } from "zod";
 import { prisma } from "../../lib/prisma";
 import bcrypt from "bcrypt";
 
-export async function loginUser(app: FastifyInstance) {
+export async function loginAdmin(app: FastifyInstance) {
   app.post("/admins/login", async (request, reply) => {
     const loginUserBody = z.object({
       email: z.string().email(),

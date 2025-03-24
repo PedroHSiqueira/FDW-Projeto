@@ -8,6 +8,7 @@ import { getAdmins } from "./routes/admin/get-admins";
 import { deleteAdmin } from "./routes/admin/delete-admin";
 import { updateAdmin } from "./routes/admin/update-admin";
 import { loginUser } from "./routes/authentication/login-user";
+import { loginAdmin } from "./routes/authentication/admin-user";
 
 const app = fastify();
 
@@ -25,6 +26,7 @@ app.register(updateAdmin)
 
 //Rotas Login 
 app.register(loginUser)
+app.register(loginAdmin)
 
 app.listen({ port: 3000 }).then(() => {
   console.log("Server is Running!");
