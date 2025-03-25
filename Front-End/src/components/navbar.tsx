@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import tw from "twrnc";
 import { Link, useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";

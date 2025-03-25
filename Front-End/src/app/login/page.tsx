@@ -1,4 +1,4 @@
-import { Text, Image, View, ScrollView } from "react-native";
+import { Text, ScrollView } from "react-native";
 export default function Login() {
   return (
     <ScrollView className="mt-0">

@@ -1,7 +1,6 @@
 import React from "react";
-import { Image, View, Text, Button } from "react-native";
+import {  View, Text, } from "react-native";
 import { Link } from "expo-router";
-import tw from "twrnc";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function MenuBar() {
