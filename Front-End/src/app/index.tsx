@@ -6,8 +6,9 @@ export default function Index() {
       <Banner />
 
       <View className="flex p-7 mt-10 justify-center items-center">
-        <Text className="text-black font-black text-xl text-center">
-          Notícias Exclusivas, Apenas para Você</Text>
+        <Text className="text-black font-black text-xl text-center max-w-xs">
+          Notícias Exclusivas, Apenas para Você
+        </Text>
         <View className="flex flex-row justify-between gap-10 mt-7">
           <Image
             source={require("../../public/logo.png")}
