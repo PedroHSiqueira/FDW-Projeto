@@ -1,14 +1,15 @@
 import Footer from "../components/menuBar";
 import Navbar from "../components/navbar";
-import "../styles/global.css"
+import "../styles/global.css";
 
 import { Slot } from "expo-router";
 
-
 export default function RootLayout() {
-  return <>
-  <Navbar />
-  <Slot />
-  <Footer/>
-</>
+  return (
+    <>
+      <Navbar />
+      <Slot />
+      <Footer />
+    </>
+  );
 }
