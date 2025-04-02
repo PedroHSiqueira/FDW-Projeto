@@ -19,7 +19,7 @@ export default function Navbar() {
       </View>
 
       <View style={tw`flex-1 items-center justify-center`}>
-        <Link href="/login/page" asChild>
+        <Link href="/login" asChild>
           <Text style={tw`bg-white px-2 ml-2 py-1 font-bold rounded-full border-[2px] border-[#101829] text-xs`}>Entrar Agora</Text>
         </Link>
       </View>
