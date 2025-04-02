@@ -8,7 +8,7 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <Slot />
+      <Slot  />
       <Footer />
     </>
   );

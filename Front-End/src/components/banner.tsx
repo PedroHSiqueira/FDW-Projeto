@@ -3,7 +3,7 @@ import { Image, View, Text } from "react-native";
 
 export default function Banner() {
   return (
-    <View className="flex-row p-7 shadow-lg bg-[#1d5586] justify-between">
+    <View className="flex-row p-7 shadow-lg bg-[#094067] justify-between">
       <Image source={require("../../public/celular.png")} className="w-50 h-50 mr-4" />
       <View className="flex items-center text-center mx-1 justify-center">
         <Text className="text-white font-black text-lg md:text-xl text-center max-w-[150px]">📢 Suas Notícias Seu Jeito!</Text>
