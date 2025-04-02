@@ -13,7 +13,7 @@ export default function MenuBar() {
         </View>
       </Link>
 
-      <Link href="/">
+      <Link href="/noticias/page">
         <View className="items-center">
           <Icon name="home" size={24} color="black" />
           <Text className="font-bold">Inicio</Text>

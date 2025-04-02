@@ -11,7 +11,7 @@ export default function Navbar() {
       </Link>
 
       <View style={tw`flex-1 items-center justify-center`}>
-        <Link className="px-2 py-1 ml-2 rounded-full border-[2px] border-[#101829]" href={"/"}>
+        <Link className="px-2 py-1 ml-2 rounded-full border-[2px] border-[#101829]" href="/noticias/page" asChild>
           <Text style={tw`text-black text-xs font-bold`}>
             <Icon name="search" size={16} color="#000" /> Buscar
           </Text>

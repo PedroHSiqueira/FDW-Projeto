@@ -1,8 +1,8 @@
 import { Text, ScrollView } from "react-native";
-export default function Postagens() {
+export default function Login() {
   return (
     <ScrollView className="mt-0">
-      <Text>alguem faça o Postagens</Text>
+      <Text>alguem faça o login</Text>
     </ScrollView>
   );
 }
