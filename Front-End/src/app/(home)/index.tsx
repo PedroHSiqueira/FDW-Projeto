@@ -7,7 +7,7 @@ export default function Index() {
 
       <View className="flex p-7 py-10 justify-center items-center">
         <Text className="text-[#181818] font-black text-xl text-center max-w-xs">Notícias Exclusivas, Apenas para Você</Text>
-        <View className="flex flex-row justify-between gap-10 mt-7">
+        <View className="flex flex-col justify-between gap-10 mt-7 lg:flex-row lg:gap-0">
           <Image source={require("../../../public/logo.png")} className="w-[10rem] h-[10rem]" />
           <View className="flex items-center text-center mx-1 justify-center">
             <Text className="text-[#2e2e2e] text-center font-bold text-sm mt-2 max-w-[150px]">Escolha os temas que mais importam para você e tenha um feed personalizado com as notícias mais relevantes. Informação rápida, confiável e no seu estilo!</Text>
