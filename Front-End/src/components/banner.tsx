@@ -4,9 +4,8 @@ import tw from "twrnc";
 
 export default function Banner() {
   const { width } = useWindowDimensions();
-  const isLargeScreen = width >= 1024; // ativar melhoria só em telas bem grandes
+  const isLargeScreen = width >= 1024;
 
-  // Tamanhos de imagem mais generosos
   const imageSize = isLargeScreen ? 280 : width >= 768 ? 200 : 150;
   const maxTextWidth = isLargeScreen ? 600 : width >= 768 ? 500 : "90%";
 
