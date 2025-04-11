@@ -1,13 +1,56 @@
 import React from "react";
-import { Image, View, Text } from "react-native";
+import { Image, View, Text, useWindowDimensions } from "react-native";
+import tw from "twrnc";
 
 export default function Banner() {
+  const { width } = useWindowDimensions();
+  const isLargeScreen = width >= 1024; // ativar melhoria só em telas bem grandes
+
+  // Tamanhos de imagem mais generosos
+  const imageSize = isLargeScreen ? 280 : width >= 768 ? 200 : 150;
+  const maxTextWidth = isLargeScreen ? 600 : width >= 768 ? 500 : "90%";
+
   return (
-    <View className="flex-row p-7 shadow-lg bg-[#094067] justify-between">
-      <Image source={require("../../public/celular.png")} className="w-50 h-50 mr-4" />
-      <View className="flex items-center text-center mx-1 justify-center">
-        <Text className="text-white font-black text-lg md:text-xl text-center max-w-[150px]">📢 Suas Notícias Seu Jeito!</Text>
-        <Text className="text-white text-center italic text-sm mt-2 max-w-[150px]">Escolha os temas que mais importam para você e tenha um feed personalizado com as notícias mais relevantes. Informação rápida, confiável e no seu estilo!</Text>
+    <View
+      style={tw.style(
+        "bg-[#094067] px-8 py-12",
+        isLargeScreen ? "flex-row justify-center items-center" : "flex-col items-center"
+      )}
+    >
+      <Image
+        source={require("../../public/celular.png")}
+        style={{
+          width: imageSize,
+          height: imageSize,
+          resizeMode: "contain",
+          marginRight: isLargeScreen ? 32 : 0,
+          marginBottom: isLargeScreen ? 0 : 20,
+        }}
+      />
+
+      <View
+        style={{
+          maxWidth: maxTextWidth,
+          alignItems: isLargeScreen ? "flex-start" : "center",
+        }}
+      >
+        <Text
+          style={tw.style(
+            "text-white font-bold mb-3",
+            isLargeScreen ? "text-3xl text-left" : width >= 768 ? "text-2xl text-left" : "text-lg text-center"
+          )}
+        >
+          📢 Suas Notícias, Seu Jeito!
+        </Text>
+
+        <Text
+          style={tw.style(
+            "text-white italic leading-7",
+            isLargeScreen ? "text-lg text-left" : width >= 768 ? "text-base text-left" : "text-sm text-center"
+          )}
+        >
+          Escolha os temas que mais importam para você e tenha um feed personalizado com as notícias mais relevantes. Informação rápida, confiável e no seu estilo!
+        </Text>
       </View>
     </View>
   );
