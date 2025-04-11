@@ -23,32 +23,13 @@ export default function Navbar() {
   };
 
   return (
-    <View
-      style={tw`flex-row items-center justify-between px-4 py-3 bg-white shadow-md w-full`}
-    >
+    <View style={tw`flex-row items-center justify-between px-4 py-3 bg-white shadow-md w-full`}>
       <TouchableOpacity onPress={() => router.push("/")}>
-        <Image
-          source={require("../../public/logo.png")}
-          style={tw`w-12 h-12`}
-          resizeMode="contain"
-        />
+        <Image source={require("../../public/logo.png")} style={tw`w-12 h-12`} resizeMode="contain" />
       </TouchableOpacity>
 
-      <View
-        style={tw`flex-row items-center border border-gray-300 rounded-full px-3 py-1 bg-white mx-2`}
-      >
-        <TextInput
-          style={[
-            tw`text-black text-xs py-1`,
-            { width: isLargeScreen ? 200 : 120 },
-          ]}
-          placeholder="Buscar..."
-          value={termoBusca}
-          onChangeText={setTermoBusca}
-          onSubmitEditing={handleBuscar}
-          returnKeyType="search"
-          placeholderTextColor="#888"
-        />
+      <View style={tw`flex-row items-center border border-gray-300 rounded-full px-3 py-1 bg-white mx-2`}>
+        <TextInput style={[tw`text-black text-xs py-1`, { width: isLargeScreen ? 200 : 120 }]} placeholder="Buscar..." value={termoBusca} onChangeText={setTermoBusca} onSubmitEditing={handleBuscar} returnKeyType="search" placeholderTextColor="#888" />
         {termoBusca.length > 0 && (
           <TouchableOpacity onPress={handleCancelarBusca} style={tw`ml-2`}>
             <Icon name="times" size={14} color="#888" />
@@ -59,10 +40,7 @@ export default function Navbar() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity
-        onPress={() => router.push("/login")}
-        style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}
-      >
+      <TouchableOpacity onPress={() => router.push("/login")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
         <Text style={tw`text-xs font-bold text-black`}>Entrar Agora</Text>
       </TouchableOpacity>
     </View>
