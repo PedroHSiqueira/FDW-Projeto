@@ -1,14 +1,4 @@
-import {
-  Text,
-  Image,
-  View,
-  ScrollView,
-  Linking,
-  TouchableOpacity,
-  Dimensions,
-  Modal,
-  ActivityIndicator,
-} from "react-native";
+import { Text, Image, View, ScrollView, Linking, TouchableOpacity, Dimensions, Modal, ActivityIndicator } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { NEWS_API_KEY } from "@env";
@@ -41,9 +31,7 @@ export default function NoticiasPrincipais() {
 
         const termoBusca = busca ? String(busca) : "bolsonaro OR lula OR trump OR biden OR putin OR política OR governo OR mundo OR internacional OR eua OR china OR guerra OR tecnologia OR inovação OR ciência OR economia OR inteligência artificial";
 
-        const response = await axios.get(
-          `https://gnews.io/api/v4/search?q=${encodeURIComponent(termoBusca)}&lang=pt&max=30&token=${NEWS_API_KEY}`
-        );
+        const response = await axios.get(`https://gnews.io/api/v4/search?q=${encodeURIComponent(termoBusca)}&lang=pt&max=30&token=${NEWS_API_KEY}`);
 
         const noticiasComImagem = response.data.articles
         .filter((item: any) =>
@@ -86,16 +74,12 @@ export default function NoticiasPrincipais() {
   return (
     <ScrollView className="bg-[#f9f4ef]">
       <View className="items-center px-4 pb-10">
-        <Text className="text-lg font-semibold my-4 text-center">
-          {busca ? `Resultados para: "${busca}"` : "Notícias em destaque"}
-        </Text>
+        <Text className="text-lg font-semibold my-4 text-center">{busca ? `Resultados para: "${busca}"` : "Notícias em destaque"}</Text>
 
         {carregando ? (
           <ActivityIndicator size="large" color="#000" />
         ) : noticias.length === 0 ? (
-          <Text className="text-center text-gray-500 mt-6">
-            Nenhuma notícia encontrada.
-          </Text>
+          <Text className="text-center text-gray-500 mt-6">Nenhuma notícia encontrada.</Text>
         ) : (
           <View
             style={{
@@ -112,24 +96,13 @@ export default function NoticiasPrincipais() {
                 className="bg-white rounded-3xl p-4 shadow shadow-black/10"
                 style={{
                   elevation: 3,
-                  width:
-                    width >= 1024
-                      ? "32%"
-                      : width >= 768
-                        ? "48%"
-                        : width <= 600
-                          ? "100%"
-                          : "48%",
+                  width: width >= 1024 ? "32%" : width >= 768 ? "48%" : width <= 600 ? "100%" : "48%",
                   marginBottom: 20,
                 }}
               >
-                <Text className="text-[#181818] font-bold text-lg text-center">
-                  {noticia.title}
-                </Text>
+                <Text className="text-[#181818] font-bold text-lg text-center">{noticia.title}</Text>
 
-                <Text className="text-gray-500 text-sm text-center mt-1">
-                  {moment(noticia.pubDate).format("LLL")}
-                </Text>
+                <Text className="text-gray-500 text-sm text-center mt-1">{moment(noticia.pubDate).format("LLL")}</Text>
 
                 <Image
                   source={{ uri: noticia.image_url! }}
@@ -142,23 +115,14 @@ export default function NoticiasPrincipais() {
                   }}
                 />
 
-                <Text className="text-[#181818] font-medium text-base text-justify mt-4">
-                  {noticia.description}
-                </Text>
+                <Text className="text-[#181818] font-medium text-base text-justify mt-4">{noticia.description}</Text>
 
-                <TouchableOpacity
-                  onPress={() => abrirModal(noticia)}
-                  className="bg-blue-600 px-4 py-2 mt-4 rounded-lg"
-                >
-                  <Text className="text-white font-semibold text-center">
-                    Ver mais
-                  </Text>
+                <TouchableOpacity onPress={() => abrirModal(noticia)} className="bg-blue-600 px-4 py-2 mt-4 rounded-lg">
+                  <Text className="text-white font-semibold text-center">Ver mais</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => Linking.openURL(noticia.link)}>
-                  <Text className="text-blue-600 mt-3 text-sm underline text-center">
-                    Leia a matéria completa
-                  </Text>
+                  <Text className="text-blue-600 mt-3 text-sm underline text-center">Leia a matéria completa</Text>
                 </TouchableOpacity>
               </View>
             ))}
@@ -167,18 +131,10 @@ export default function NoticiasPrincipais() {
       </View>
 
       {noticiaSelecionada && (
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={fecharModal}
-        >
+        <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={fecharModal}>
           <View className="flex-1 justify-center items-center bg-black/50 px-4">
             <View className="bg-white rounded-2xl w-full max-w-[600px] max-h-[90%]">
-              <ScrollView
-                contentContainerStyle={{ padding: 20 }}
-                showsVerticalScrollIndicator={false}
-              >
+              <ScrollView contentContainerStyle={{ padding: 20 }} showsVerticalScrollIndicator={false}>
                 {noticiaSelecionada.image_url && (
                   <Image
                     source={{ uri: noticiaSelecionada.image_url }}
@@ -192,40 +148,23 @@ export default function NoticiasPrincipais() {
                   />
                 )}
 
-                <Text className="text-lg font-bold text-center mb-1">
-                  {noticiaSelecionada.title}
-                </Text>
+                <Text className="text-lg font-bold text-center mb-1">{noticiaSelecionada.title}</Text>
 
-                <Text className="text-gray-500 text-sm text-center mb-4">
-                  {moment(noticiaSelecionada.pubDate).format("LLL")}
-                </Text>
+                <Text className="text-gray-500 text-sm text-center mb-4">{moment(noticiaSelecionada.pubDate).format("LLL")}</Text>
 
-                {noticiaSelecionada.content && (
-                  <Text className="text-gray-700 text-sm leading-relaxed">
-                    {noticiaSelecionada.content.replace(/\[[^\]]*\]$/, "")}
-                  </Text>
-                )}
+                {noticiaSelecionada.content && <Text className="text-gray-700 text-sm leading-relaxed">{noticiaSelecionada.content.replace(/\[[^\]]*\]$/, "")}</Text>}
 
-                <TouchableOpacity
-                  onPress={() => Linking.openURL(noticiaSelecionada.link)}
-                  className="bg-blue-600 py-2 mt-5 px-5 rounded-xl self-center"
-                >
-                  <Text className="text-white font-semibold text-center">
-                    Ver na íntegra
-                  </Text>
+                <TouchableOpacity onPress={() => Linking.openURL(noticiaSelecionada.link)} className="bg-blue-600 py-2 mt-5 px-5 rounded-xl self-center">
+                  <Text className="text-white font-semibold text-center">Ver na íntegra</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
-                  onPress={fecharModal}
-                  className="bg-red-500 mt-5 py-2 px-5 rounded-xl self-center"
-                >
+                <TouchableOpacity onPress={fecharModal} className="bg-red-500 mt-5 py-2 px-5 rounded-xl self-center">
                   <Text className="text-white font-semibold text-center">Fechar</Text>
                 </TouchableOpacity>
               </ScrollView>
             </View>
           </View>
         </Modal>
-
       )}
     </ScrollView>
   );
