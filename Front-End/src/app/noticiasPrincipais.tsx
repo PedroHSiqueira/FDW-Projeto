@@ -34,7 +34,11 @@ export default function NoticiasPrincipais() {
         const response = await axios.get(`https://gnews.io/api/v4/search?q=${encodeURIComponent(termoBusca)}&lang=pt&max=30&token=${NEWS_API_KEY}`);
 
         const noticiasComImagem = response.data.articles
-          .filter((item: any) => item.image && !item.image.includes("imguol.com.br"))
+        .filter((item: any) =>
+          item.image &&
+          !item.image.includes("imguol.com.br") &&
+          !item.image.includes("em.com.br")
+        )
           .slice(0, 6)
           .map((item: any) => ({
             title: item.title,
