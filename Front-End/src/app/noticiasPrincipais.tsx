@@ -46,7 +46,11 @@ export default function NoticiasPrincipais() {
         );
 
         const noticiasComImagem = response.data.articles
-          .filter((item: any) => item.image && !item.image.includes("imguol.com.br"))
+        .filter((item: any) =>
+          item.image &&
+          !item.image.includes("imguol.com.br") &&
+          !item.image.includes("em.com.br")
+        )
           .slice(0, 6)
           .map((item: any) => ({
             title: item.title,
