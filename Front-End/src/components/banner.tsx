@@ -4,11 +4,7 @@ import tw from "twrnc";
 
 export default function Banner() {
   const { width } = useWindowDimensions();
-<<<<<<< HEAD
   const isLargeScreen = width >= 1024; 
-=======
-  const isLargeScreen = width >= 1024;
->>>>>>> f06020c8b6609b07b57910c56648f51364aba77b
 
   const imageSize = isLargeScreen ? 280 : width >= 768 ? 200 : 150;
   const maxTextWidth = isLargeScreen ? 600 : width >= 768 ? 500 : "90%";
