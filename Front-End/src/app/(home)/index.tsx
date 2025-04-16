@@ -1,7 +1,7 @@
 import { Text, View, ScrollView, Image } from "react-native";
 import Banner from "../../components/banner";
 import "moment/locale/pt-br";
-import NoticiasPrincipais from "../noticiasPrincipais";
+import NoticiasPrincipais from "../../components/noticiasIniciais";
 
 export default function Index() {
   return (

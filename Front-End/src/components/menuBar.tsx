@@ -32,7 +32,7 @@ export default function MenuBar() {
 
   return (
     <>
-      <View className="mt-10 flex-row p-4 bg-slate-200 rounded-s-3xl rounded-e-3xl justify-evenly lg:p-6 xl:p-8">
+      <View className="flex-row p-4 bg-slate-200 rounded-s-3xl rounded-e-3xl justify-evenly lg:p-6 xl:p-8">
         <Link href={"/"}>
           <View className="items-center">
             <Icon name="globe" size={24} color="black" />
