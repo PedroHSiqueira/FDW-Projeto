@@ -9,8 +9,10 @@ import { deleteAdmin } from "./routes/admin/delete-admin";
 import { updateAdmin } from "./routes/admin/update-admin";
 import { loginUser } from "./routes/authentication/login-user";
 import { loginAdmin } from "./routes/authentication/admin-user";
+import fastifyCors from "@fastify/cors";
 
 const app = fastify();
+app.register(fastifyCors);
 
 // Rotas de Usuarios
 app.register(createUser)
