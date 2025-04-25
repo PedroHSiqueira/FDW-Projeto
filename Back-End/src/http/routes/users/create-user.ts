@@ -44,6 +44,11 @@ export async function createUser(app: FastifyInstance) {
 
     const { name, email, password } = createUserBody.parse(request.body);
 
+    if (!name || !email || !password) {
+      reply.status(400).send({ message: "Preencha todos os campos" });
+      return;
+    }
+
     const erros = validatePassword(password);
     if (erros.length > 0) {
       reply.status(400).send({ message: "Senha Inválida" });

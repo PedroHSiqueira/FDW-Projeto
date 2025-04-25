@@ -18,28 +18,25 @@ export default function Registro() {
   });
 
   async function verificaCadastro(data: Inputs) {
-    console.log(data);
     try {
-      console.log(data);
       const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          nome: data.name,
+          name: data.name,
           email: data.email,
-          senha: data.password,
+          password: data.password,
         }),
       });
       
-      if (response.ok) {
-        const dados = await response.json();
-        console.log(dados);
+      if (response.status === 201) {
+        console.log(data);
         router.push("/login");
       } else {
+        console.log(data);
         console.error("Erro no cadastro:", response.status);
-        // Mostrar mensagem de erro para o usuário
       }
     } catch (error) {
       console.log(data);
