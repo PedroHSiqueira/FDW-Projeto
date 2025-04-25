@@ -30,6 +30,6 @@ app.register(updateAdmin)
 app.register(loginUser)
 app.register(loginAdmin)
 
-app.listen({ port: 3000 }).then(() => {
+app.listen({ port: 3001 }).then(() => {
   console.log("Server is Running!");
 });
