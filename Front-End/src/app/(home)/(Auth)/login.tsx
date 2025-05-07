@@ -22,6 +22,7 @@ export default function Login() {
       body: JSON.stringify({ email: data.email, password: data.password }),
     });
 
+    console.log(response);
     if (response.status !== 200) {
       console.error("Erro no login:", response.status);
       return;
@@ -35,7 +36,7 @@ export default function Login() {
   return (
     <View className="flex-1 bg-[#1A1A1A] justify-center items-center p-6">
       <View className="items-center mb-8">
-        <Image source={require("../../../../public/logo.png")} style={{ width: 100, height: 100, resizeMode: "contain" }} />
+        <Image source={require("../../../../public/logo.png")} style={{ width: 100, height: 100, resizeMode: "contain", zIndex: -1 }} />
         <Text className="text-white text-2xl font-bold mt-2">Diário Digital</Text>
       </View>
 

@@ -44,7 +44,7 @@ export default function Registro() {
       <View className="items-center mb-8">
         <Image 
           source={require("../../../../public/logo.png")} 
-          style={{ width: 100, height: 100, resizeMode: "contain" }} 
+          style={{ width: 100, height: 100, resizeMode: "contain", zIndex: -1 }} 
         />
         <Text className="text-white text-2xl font-bold mt-2">Diário Digital</Text>
       </View>

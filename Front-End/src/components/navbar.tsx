@@ -23,7 +23,7 @@ export default function Navbar() {
   };
 
   return (
-    <View style={tw` z-10 flex-row items-center justify-between px-4 py-3 bg-white shadow-md w-full`}>
+    <View style={tw`flex-row items-center justify-between px-4 py-3 bg-white shadow-md w-full`}>
       <TouchableOpacity onPress={() => router.push("/")}>
         <Image source={require("../../public/logo.png")} style={tw`w-12 h-12`} resizeMode="contain" />
       </TouchableOpacity>
