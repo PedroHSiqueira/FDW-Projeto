@@ -1,7 +1,6 @@
 import { Text, Image, View, ScrollView, Linking, TouchableOpacity, Dimensions, Modal, ActivityIndicator } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { NEWS_API_KEY } from "@env";
 import moment from "moment";
 import "moment/locale/pt-br";
 import { useLocalSearchParams } from "expo-router";
