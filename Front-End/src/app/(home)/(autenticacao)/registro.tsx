@@ -30,7 +30,7 @@ export default function Registro() {
           password: data.password,
         }),
       });
-      
+      console.log(response);
       if (response.status === 201) {
         console.log(data);
         router.push("/login");

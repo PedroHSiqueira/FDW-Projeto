@@ -29,9 +29,9 @@ export default function NoticiasPrincipais() {
       try {
         setCarregando(true);
 
-        const termoBusca = busca ? String(busca) : "tecnologia OR inovação OR ciência OR economia OR inteligência artificial OR saúde OR educação OR meio ambiente OR sustentabilidade OR política OR cultura OR esportes OR entretenimento OR viagens OR gastronomia OR estilo de vida";
+        const termoBusca = busca ? String(busca) : "tecnologia OR lula OR trump OR zelenski OR putin OR internacional saúde OR política OR futebol OR champions OR economia OR esportes OR entretenimento OR cultura OR educação OR meio ambiente";
 
-        const response = await axios.get(`https://gnews.io/api/v4/search?q=${encodeURIComponent(termoBusca)}&lang=pt&max=30&token=${NEWS_API_KEY}`);
+        const response = await axios.get(`https://gnews.io/api/v4/search?q=${termoBusca}&lang=pt&max=10&token=86ee6e16e8f11891b1f03ec352340a9a`);
 
         const noticiasComImagem = response.data.articles
         .filter((item: any) =>
