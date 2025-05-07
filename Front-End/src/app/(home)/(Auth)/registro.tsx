@@ -9,13 +9,7 @@ type Inputs = {
 };
 
 export default function Registro() {
-  const { control, handleSubmit } = useForm<Inputs>({
-    defaultValues: {
-      name: "",
-      email: "",
-      password: ""
-    }
-  });
+  const { control, handleSubmit } = useForm<Inputs>();
 
   async function verificaCadastro(data: Inputs) {
     try {
