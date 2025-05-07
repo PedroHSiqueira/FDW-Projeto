@@ -15,7 +15,7 @@ interface Noticia {
   content?: string;
 }
 
-export default function NoticiasPrincipais() {
+export default function NoticiasLogada() {
   const [noticias, setNoticias] = useState<Noticia[]>([]);
   const [noticiaSelecionada, setNoticiaSelecionada] = useState<Noticia | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -39,7 +39,7 @@ export default function NoticiasPrincipais() {
           !item.image.includes("imguol.com.br") &&
           !item.image.includes("em.com.br")
         )
-          .slice(0, 4)
+          .slice(0, 10)
           .map((item: any) => ({
             title: item.title,
             link: item.url,
