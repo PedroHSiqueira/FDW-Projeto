@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Animated, Dimensions } from "react-native";
-import { Link } from "expo-router";
+import { View, Text, TouchableOpacity, Animated, Dimensions, Button, Alert } from "react-native";
+import { Link, router } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { supabase } from "../lib/supabase";
+import { useAuth } from "../context/AuthContext";
 
 export default function MenuBar() {
+  const { setAuth } = useAuth();
   const [menuAberto, setMenuAberto] = useState(false);
   const translateX = useState(new Animated.Value(-Dimensions.get("window").width))[0];
 
@@ -30,6 +33,17 @@ export default function MenuBar() {
 
   const menuWidth = width < 768 ? "80%" : width < 1024 ? "60%" : "40%";
 
+  async function handleSignOut() {
+    const { error } = await supabase.auth.signOut();
+    setAuth(null);
+
+    if (error) {
+      Alert.alert("Erro ao sair:", "ao sair do aplicativo, ocorreu um erro");
+    }
+
+    fecharMenu()
+  }
+
   return (
     <>
       <View className="flex-row p-4 bg-slate-200 rounded-s-1xl rounded-e-3xl justify-evenly lg:p-6 xl:p-8">
@@ -53,18 +67,16 @@ export default function MenuBar() {
             <Text className="font-bold text-sm lg:text-base">Menu</Text>
           </View>
         </TouchableOpacity>
+
+        
       </View>
 
       {menuAberto && (
-        <TouchableOpacity
-          onPress={fecharMenu}
-          className="absolute top-0 left-0 right-0 bottom-0 bg-black/40"
-          activeOpacity={1}
-        >
+        <TouchableOpacity onPress={fecharMenu} className="absolute top-0 left-0 right-0 bottom-0 bg-black/40" activeOpacity={1}>
           <Animated.View
             style={{
               transform: [{ translateX }],
-              width: menuWidth, 
+              width: menuWidth,
               height: "100%",
               backgroundColor: "#E2DFDF",
               padding: 15,
@@ -76,14 +88,14 @@ export default function MenuBar() {
           >
             <Text className="text-xl font-bold mb-6">Diário Digital</Text>
 
-            <Link href="/login" asChild>
+            <Link href="/(home)/(Auth)/login/page" asChild>
               <TouchableOpacity className="mb-4 flex-row items-center">
                 <Icon name="lock" size={24} color="black" />
                 <Text className="text-lg ml-2">Login</Text>
               </TouchableOpacity>
             </Link>
 
-            <Link href="/registro" asChild>
+            <Link href="/(home)/(Auth)/signup/page" asChild>
               <TouchableOpacity className="mb-4 flex-row items-center">
                 <Icon name="edit" size={24} color="black" />
                 <Text className="text-lg ml-2">Registro</Text>
@@ -117,6 +129,12 @@ export default function MenuBar() {
                 <Text className="text-lg ml-2">Desenvolvedores</Text>
               </TouchableOpacity>
             </Link>
+
+            <Button
+              title="Sair"
+              onPress={handleSignOut}
+              color="#FF0000"
+            />
 
             <TouchableOpacity onPress={fecharMenu}>
               <Text className="text-red-600 mt-8">Fechar</Text>

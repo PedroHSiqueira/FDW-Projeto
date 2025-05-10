@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, Image, Dimensions, TextInput, TouchableOpacity } from "react-native";
-import tw from "twrnc";
 import { useRouter } from "expo-router";
+import { useAuth } from "../context/AuthContext";
+import tw from "twrnc";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { supabase } from "../lib/supabase";
 
 export default function Navbar() {
+  const [user, setUser] = useState(null);
+  const { setAuth } = useAuth();
   const { width } = Dimensions.get("window");
   const isLargeScreen = width >= 768;
   const router = useRouter();
@@ -13,7 +17,7 @@ export default function Navbar() {
 
   const handleBuscar = () => {
     if (termoBusca.trim()) {
-      router.push(`/noticias/page?busca=${encodeURIComponent(termoBusca.trim())}`);
+      // router.push(`/noticias/page?busca=${encodeURIComponent(termoBusca.trim())}`);
       setTermoBusca("");
     }
   };
@@ -21,6 +25,26 @@ export default function Navbar() {
   const handleCancelarBusca = () => {
     setTermoBusca("");
   };
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        const user = session.user.user_metadata.name;
+        setUser(user);
+      }
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {      
+      if (session) {
+        const user = session.user.user_metadata.name;
+        setUser(user);
+        setAuth(session.user);
+      } else {
+        setUser(null);
+        setAuth(null);
+      }
+    });
+  });
 
   return (
     <View style={tw`flex-row items-center justify-between px-4 py-3 bg-white shadow-md w-full`}>
@@ -40,9 +64,15 @@ export default function Navbar() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity onPress={() => router.push("/login")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
-        <Text style={tw`text-xs font-bold text-black`}>Entrar Agora</Text>
-      </TouchableOpacity>
+      {user ? (
+        <TouchableOpacity onPress={() => router.push("/logada")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
+          <Text style={tw`text-xs font-bold text-black`}>{user}</Text>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity onPress={() => router.push("/(home)/(Auth)/login/page")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
+          <Text style={tw`text-xs font-bold text-black`}>Login</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
