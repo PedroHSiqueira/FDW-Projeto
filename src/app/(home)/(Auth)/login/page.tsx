@@ -17,13 +17,13 @@ export default function Login() {
     });
 
     if (error) {
-      Alert.alert("Erro", "Credenciais inválidas");
+      Alert.alert("Erro", error.message);
       setLoading(false);
       return;
     }
 
     setLoading(false);
-    router.push("/logada");
+    router.push("/(home)/main");
 
   }
   return (
