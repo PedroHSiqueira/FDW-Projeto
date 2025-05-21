@@ -6,15 +6,19 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
 
 export default function MenuBar() {
-  const { setAuth } = useAuth();
+  const { user, setAuth } = useAuth();
   const [menuAberto, setMenuAberto] = useState(false);
-  const translateX = useState(new Animated.Value(-Dimensions.get("window").width))[0];
+  const [categoriasAbertas, setCategoriasAbertas] = useState(false);
 
   const { width } = Dimensions.get("window");
+  const menuWidth = width < 768 ? "80%" : width < 1024 ? "60%" : "40%";
+
+  const translateMenuX = useState(new Animated.Value(-Dimensions.get("window").width))[0];
+  const translateCategoriasX = useState(new Animated.Value(-Dimensions.get("window").width))[0];
 
   const abrirMenu = () => {
     setMenuAberto(true);
-    Animated.timing(translateX, {
+    Animated.timing(translateMenuX, {
       toValue: 0,
       duration: 300,
       useNativeDriver: true,
@@ -22,60 +26,77 @@ export default function MenuBar() {
   };
 
   const fecharMenu = () => {
-    Animated.timing(translateX, {
+    Animated.timing(translateMenuX, {
       toValue: -Dimensions.get("window").width,
       duration: 300,
       useNativeDriver: true,
-    }).start(() => {
-      setMenuAberto(false);
-    });
+    }).start(() => setMenuAberto(false));
   };
 
-  const menuWidth = width < 768 ? "80%" : width < 1024 ? "60%" : "40%";
+  const abrirCategorias = () => {
+    setCategoriasAbertas(true);
+    Animated.timing(translateCategoriasX, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const fecharCategorias = () => {
+    Animated.timing(translateCategoriasX, {
+      toValue: -Dimensions.get("window").width,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => setCategoriasAbertas(false));
+  };
 
   async function handleSignOut() {
     const { error } = await supabase.auth.signOut();
     setAuth(null);
-
     if (error) {
       Alert.alert("Erro ao sair:", "ao sair do aplicativo, ocorreu um erro");
     }
-
-    fecharMenu()
+    fecharMenu();
+    fecharCategorias();
   }
 
   return (
     <>
+      {/* Barra principal inferior */}
       <View className="flex-row p-4 bg-slate-200 rounded-s-1xl rounded-e-3xl justify-evenly lg:p-6 xl:p-8">
-        <Link href={"/"}>
-          <View className="items-center">
-            <Icon name="globe" size={24} color="black" />
-            <Text className="font-bold text-sm lg:text-base">Mundo</Text>
-          </View>
-        </Link>
+        {/* Botão de Categorias */}
+        {user && (
+          <TouchableOpacity onPress={abrirCategorias}>
+            <View className="items-center">
+              <Icon name="tag" size={24} color="black" />
+              <Text className="font-bold text-sm lg:text-base">Categorias</Text>
+            </View>
+          </TouchableOpacity>
+        )}
 
+        {/* Início */}
         <Link href="/">
           <View className="items-center">
             <Icon name="home" size={24} color="black" />
-            <Text className="font-bold text-sm lg:text-base">Inicio</Text>
+            <Text className="font-bold text-sm lg:text-base">Início</Text>
           </View>
         </Link>
 
+        {/* Botão Menu */}
         <TouchableOpacity onPress={abrirMenu}>
           <View className="items-center">
             <Icon name="reorder" size={24} color="black" />
             <Text className="font-bold text-sm lg:text-base">Menu</Text>
           </View>
         </TouchableOpacity>
-
-        
       </View>
 
+      {/* Drawer Lateral - Menu */}
       {menuAberto && (
         <TouchableOpacity onPress={fecharMenu} className="absolute top-0 left-0 right-0 bottom-0 bg-black/40" activeOpacity={1}>
           <Animated.View
             style={{
-              transform: [{ translateX }],
+              transform: [{ translateX: translateMenuX }],
               width: menuWidth,
               height: "100%",
               backgroundColor: "#E2DFDF",
@@ -130,13 +151,80 @@ export default function MenuBar() {
               </TouchableOpacity>
             </Link>
 
-            <Button
-              title="Sair"
-              onPress={handleSignOut}
-              color="#FF0000"
-            />
-
+            <Button title="Sair" onPress={handleSignOut} color="#FF0000" />
             <TouchableOpacity onPress={fecharMenu}>
+              <Text className="text-red-600 mt-8">Fechar</Text>
+            </TouchableOpacity>
+          </Animated.View>
+        </TouchableOpacity>
+      )}
+
+      {/* Drawer Lateral - Categorias */}
+      {categoriasAbertas && user && (
+        <TouchableOpacity onPress={fecharCategorias} className="absolute top-0 left-0 right-0 bottom-0 bg-black/40" activeOpacity={1}>
+          <Animated.View
+            style={{
+              transform: [{ translateX: translateCategoriasX }],
+              width: menuWidth,
+              height: "100%",
+              backgroundColor: "#E2DFDF",
+              padding: 15,
+              position: "absolute",
+              left: 0,
+              top: 0,
+              zIndex: 1000,
+            }}
+          >
+            <Text className="text-xl font-bold mb-6">Categorias</Text>
+
+            <Link href="/noticia/page" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="group" size={24} color="black" />
+                <Text className="text-lg ml-2">Política</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/categoria/economia" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="bar-chart-o" size={24} color="black" />
+                <Text className="text-lg ml-2">Economia</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/categoria/esportes" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="futbol-o" size={24} color="black" />
+                <Text className="text-lg ml-2">Esportes</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/categoria/tecnologia" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="laptop" size={24} color="black" />
+                <Text className="text-lg ml-2">Tecnologia</Text>
+              </TouchableOpacity>
+            </Link>
+             <Link href="/categoria/tecnologia" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="film" size={24} color="black" />
+                <Text className="text-lg ml-2">entretenimento</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/categoria/tecnologia" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="camera" size={24} color="black" />
+                <Text className="text-lg ml-2">cultura</Text>
+              </TouchableOpacity>
+            </Link>
+
+            <Link href="/categoria/tecnologia" asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+                <Icon name="leaf" size={24} color="black" />
+                <Text className="text-lg ml-2">meio ambiente</Text>
+              </TouchableOpacity>
+            </Link>
+            <TouchableOpacity onPress={fecharCategorias}>
               <Text className="text-red-600 mt-8">Fechar</Text>
             </TouchableOpacity>
           </Animated.View>
