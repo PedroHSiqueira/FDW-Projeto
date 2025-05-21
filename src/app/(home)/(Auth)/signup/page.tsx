@@ -28,7 +28,7 @@ export default function Registro() {
     }
 
     setLoading(false);
-    router.push("/login");
+    router.push("/(home)/(Auth)/login/page");
   }
 
   return (
@@ -57,7 +57,7 @@ export default function Registro() {
         </Pressable>
 
         <View className="flex-row justify-between">
-          <TouchableOpacity onPress={() => router.push("/login")}>
+          <TouchableOpacity onPress={() => router.push("/(home)/(Auth)/login/page")}>
             <Text className="text-white font-semibold">Já Possuo Login</Text>
           </TouchableOpacity>
         </View>
