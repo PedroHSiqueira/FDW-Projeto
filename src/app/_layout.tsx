@@ -22,7 +22,7 @@ function MainLayout() {
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
         setAuth(session.user);
-        router.replace("/logada")
+        router.replace("/main")
         return
       } 
 
