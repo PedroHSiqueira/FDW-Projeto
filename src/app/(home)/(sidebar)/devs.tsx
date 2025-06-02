@@ -9,12 +9,6 @@ const desenvolvedores = [
         linkedin: 'https://www.linkedin.com/in/upedrolima/',
     },
     {
-        name: 'Vitor Macedo',
-        role: 'Front-End',
-        image: require('../../../../public/1.jpg'),
-        linkedin: 'https://www.linkedin.com/in/vitormacedoo/',
-    },
-    {
         name: 'Pedro Siqueira',
         role: 'Líder Back-end',
         image: require('../../../../public/5.jpg'),
