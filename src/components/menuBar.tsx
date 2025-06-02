@@ -177,53 +177,55 @@ export default function MenuBar() {
           >
             <Text className="text-xl font-bold mb-6">Categorias</Text>
 
-            <Link href="/noticia/page" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="group" size={24} color="black" />
-                <Text className="text-lg ml-2">Política</Text>
-              </TouchableOpacity>
-            </Link>
+            <Link href={{ pathname: '/main', params: { busca: 'política' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="group" size={24} color="black" />
+    <Text className="text-lg ml-2">Política</Text>
+  </TouchableOpacity>
+</Link>
 
-            <Link href="/categoria/economia" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="bar-chart-o" size={24} color="black" />
-                <Text className="text-lg ml-2">Economia</Text>
-              </TouchableOpacity>
-            </Link>
+<Link href={{ pathname: '/main', params: { busca: 'economia' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="bar-chart-o" size={24} color="black" />
+    <Text className="text-lg ml-2">Economia</Text>
+  </TouchableOpacity>
+</Link>
 
-            <Link href="/categoria/esportes" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="futbol-o" size={24} color="black" />
-                <Text className="text-lg ml-2">Esportes</Text>
-              </TouchableOpacity>
-            </Link>
+<Link href={{ pathname: '/main', params: { busca: 'esportes' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="futbol-o" size={24} color="black" />
+    <Text className="text-lg ml-2">Esportes</Text>
+  </TouchableOpacity>
+</Link>
 
-            <Link href="/categoria/tecnologia" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="laptop" size={24} color="black" />
-                <Text className="text-lg ml-2">Tecnologia</Text>
-              </TouchableOpacity>
-            </Link>
-             <Link href="/categoria/tecnologia" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="film" size={24} color="black" />
-                <Text className="text-lg ml-2">entretenimento</Text>
-              </TouchableOpacity>
-            </Link>
+<Link href={{ pathname: '/main', params: { busca: 'tecnologia' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="laptop" size={24} color="black" />
+    <Text className="text-lg ml-2">Tecnologia</Text>
+  </TouchableOpacity>
+</Link>
 
-            <Link href="/categoria/tecnologia" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="camera" size={24} color="black" />
-                <Text className="text-lg ml-2">cultura</Text>
-              </TouchableOpacity>
-            </Link>
+<Link href={{ pathname: '/main', params: { busca: 'entretenimento' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="film" size={24} color="black" />
+    <Text className="text-lg ml-2">Entretenimento</Text>
+  </TouchableOpacity>
+</Link>
 
-            <Link href="/categoria/tecnologia" asChild>
-              <TouchableOpacity className="mb-4 flex-row items-center">
-                <Icon name="leaf" size={24} color="black" />
-                <Text className="text-lg ml-2">meio ambiente</Text>
-              </TouchableOpacity>
-            </Link>
+<Link href={{ pathname: '/main', params: { busca: 'cultura' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="camera" size={24} color="black" />
+    <Text className="text-lg ml-2">Cultura</Text>
+  </TouchableOpacity>
+</Link>
+
+<Link href={{ pathname: '/main', params: { busca: 'meio ambiente' } }} asChild>
+  <TouchableOpacity className="mb-4 flex-row items-center">
+    <Icon name="leaf" size={24} color="black" />
+    <Text className="text-lg ml-2">Meio Ambiente</Text>
+  </TouchableOpacity>
+</Link>
+
             <TouchableOpacity onPress={fecharCategorias}>
               <Text className="text-red-600 mt-8">Fechar</Text>
             </TouchableOpacity>

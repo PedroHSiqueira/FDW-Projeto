@@ -16,7 +16,7 @@ export default function RootLayout() {
 }
 
 function MainLayout() {
-  const { setAuth } = useAuth();
+  const { user,setAuth } = useAuth();
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((_event, session) => {
