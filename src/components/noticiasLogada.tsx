@@ -73,7 +73,11 @@ export default function NoticiasLogada() {
   return (
     <ScrollView className="bg-[#f9f4ef]">
       <View className="items-center px-4 pb-10">
-       <Text className="text-xl mt-3 p-2"> {busca ? `Resultados para ${String(busca).split(/[ ,]+/)[0].charAt(0).toUpperCase() + String(busca).split(/[ ,]+/)[0].slice(1)}` : "Notícias em destaque"}</Text>
+      <Text className="text-xl mt-3 p-2">
+        {busca
+          ? `Resultados para ${String(busca).split(" ")[0]}`
+          : "Notícias em destaque"}
+      </Text>
 
         {carregando ? (
           <ActivityIndicator size="large" color="#000" />
