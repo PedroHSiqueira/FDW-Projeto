@@ -1,7 +1,6 @@
 import { Text, Image, View, ScrollView, Linking, TouchableOpacity, Dimensions, Modal, ActivityIndicator } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { NEWS_API_KEY } from "@env";
 import moment from "moment";
 import "moment/locale/pt-br";
 import { useLocalSearchParams } from "expo-router";
@@ -31,7 +30,7 @@ export default function NoticiasLogada() {
 
         const termoBusca = busca ? String(busca) : "tecnologia OR lula OR trump OR zelenski OR putin OR internacional saúde OR política OR futebol OR champions OR economia OR esportes OR entretenimento OR cultura OR educação OR meio ambiente";
 
-        const response = await axios.get(`https://gnews.io/api/v4/search?q=${termoBusca}&lang=pt&max=10&token=86ee6e16e8f11891b1f03ec352340a9a`);
+        const response = await axios.get(`https://gnews.io/api/v4/search?q=${termoBusca}&lang=pt&max=10&token=6200a856a7a047b856fd161ec9644ad8`);
         
         const noticiasComImagem = response.data.articles
         .filter((item: any) =>
@@ -74,7 +73,7 @@ export default function NoticiasLogada() {
   return (
     <ScrollView className="bg-[#f9f4ef]">
       <View className="items-center px-4 pb-10">
-        <Text className="text-lg font-semibold my-4 text-center">{busca ? `Resultados para: "${busca}"` : "Notícias em destaque"}</Text>
+       <Text className="text-xl mt-3 p-2"> {busca ? `Resultados para ${String(busca).split(/[ ,]+/)[0].charAt(0).toUpperCase() + String(busca).split(/[ ,]+/)[0].slice(1)}` : "Notícias em destaque"}</Text>
 
         {carregando ? (
           <ActivityIndicator size="large" color="#000" />

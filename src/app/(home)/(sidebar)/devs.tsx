@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity, Linking, useWindowDimensions } from 'react-native';
+import { View, Text, ScrollView, Image, Linking, useWindowDimensions } from 'react-native';
 
 const desenvolvedores = [
     {
@@ -43,7 +43,6 @@ export default function Desenvolvedores() {
         return 'w-[30%]';
     };
 
-    const imageHeight = width < 500 ? 140 : 180;
 
     return (
         <ScrollView className="flex-1 p-5 mt-10">

@@ -30,7 +30,7 @@ export default function NoticiasPrincipais() {
 
         const termoBusca = busca ? String(busca) : "tecnologia OR lula OR trump OR zelenski OR putin OR internacional saúde OR política OR futebol OR champions OR economia OR esportes OR entretenimento OR cultura OR educação OR meio ambiente";
 
-        const response = await axios.get(`https://gnews.io/api/v4/search?q=${termoBusca}&lang=pt&max=10&token=86ee6e16e8f11891b1f03ec352340a9a`);
+        const response = await axios.get(`https://gnews.io/api/v4/search?q=${termoBusca}&lang=pt&max=10&token=6200a856a7a047b856fd161ec9644ad8`);
 
         const noticiasComImagem = response.data.articles
         .filter((item: any) =>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Animated, Dimensions, Button, Alert } from "react-native";
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../context/AuthContext";
@@ -62,9 +62,7 @@ export default function MenuBar() {
 
   return (
     <>
-      {/* Barra principal inferior */}
       <View className="flex-row p-4 bg-slate-200 rounded-s-1xl rounded-e-3xl justify-evenly lg:p-6 xl:p-8">
-        {/* Botão de Categorias */}
         {user && (
           <TouchableOpacity onPress={abrirCategorias}>
             <View className="items-center">
@@ -74,7 +72,6 @@ export default function MenuBar() {
           </TouchableOpacity>
         )}
 
-        {/* Início */}
         <Link href="/">
           <View className="items-center">
             <Icon name="home" size={24} color="black" />
@@ -82,7 +79,6 @@ export default function MenuBar() {
           </View>
         </Link>
 
-        {/* Botão Menu */}
         <TouchableOpacity onPress={abrirMenu}>
           <View className="items-center">
             <Icon name="reorder" size={24} color="black" />
@@ -91,7 +87,6 @@ export default function MenuBar() {
         </TouchableOpacity>
       </View>
 
-      {/* Drawer Lateral - Menu */}
       {menuAberto && (
         <TouchableOpacity onPress={fecharMenu} className="absolute top-0 left-0 right-0 bottom-0 bg-black/40" activeOpacity={1}>
           <Animated.View
@@ -159,7 +154,6 @@ export default function MenuBar() {
         </TouchableOpacity>
       )}
 
-      {/* Drawer Lateral - Categorias */}
       {categoriasAbertas && user && (
         <TouchableOpacity onPress={fecharCategorias} className="absolute top-0 left-0 right-0 bottom-0 bg-black/40" activeOpacity={1}>
           <Animated.View
@@ -177,54 +171,54 @@ export default function MenuBar() {
           >
             <Text className="text-xl font-bold mb-6">Categorias</Text>
 
-            <Link href={{ pathname: '/main', params: { busca: 'política' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="group" size={24} color="black" />
-    <Text className="text-lg ml-2">Política</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Política OR governo OR eleições OR congresso OR presidente OR deputados OR senado OR partidos OR ministério OR STF OR judiciário OR legislativo OR executivo OR corrupção OR política pública' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="group" size={24} color="black" />
+              <Text className="text-lg ml-2">Política</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'economia' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="bar-chart-o" size={24} color="black" />
-    <Text className="text-lg ml-2">Economia</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Economia OR mercado OR inflação OR dólar OR bolsa OR finanças OR PIB OR desemprego OR investimento OR bancos' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="bar-chart-o" size={24} color="black" />
+              <Text className="text-lg ml-2">Economia</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'esportes' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="futbol-o" size={24} color="black" />
-    <Text className="text-lg ml-2">Esportes</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Esportes OR futebol OR basquete OR vôlei OR olimpíadas OR copa OR campeonato OR esportivo OR atleta OR time OR gol OR partida OR jogo OR corrida OR tênis OR natação' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="futbol-o" size={24} color="black" />
+              <Text className="text-lg ml-2">Esportes</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'tecnologia' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="laptop" size={24} color="black" />
-    <Text className="text-lg ml-2">Tecnologia</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Tecnologia OR inovação OR software OR hardware OR artificial OR computação OR programação OR robótica OR gadgets OR startups OR aplicativos OR cibersegurança OR segurança' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="laptop" size={24} color="black" />
+              <Text className="text-lg ml-2">Tecnologia</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'entretenimento' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="film" size={24} color="black" />
-    <Text className="text-lg ml-2">Entretenimento</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Entretenimento OR cinema OR filmes OR séries OR música OR show OR teatro OR celebridades OR televisão OR streaming OR pop OR artistas OR festivais OR eventos OR diversão OR videogames OR novelas' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="film" size={24} color="black" />
+              <Text className="text-lg ml-2">Entretenimento</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'cultura' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="camera" size={24} color="black" />
-    <Text className="text-lg ml-2">Cultura</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Cultura OR arte OR literatura OR história OR tradição OR folclore OR museu OR exposição OR patrimônio OR dança OR pintura OR escultura OR teatro OR poesia OR livro OR artista OR festival OR costumes' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="camera" size={24} color="black" />
+              <Text className="text-lg ml-2">Cultura</Text>
+              </TouchableOpacity>
+            </Link>
 
-<Link href={{ pathname: '/main', params: { busca: 'meio ambiente' } }} asChild>
-  <TouchableOpacity className="mb-4 flex-row items-center">
-    <Icon name="leaf" size={24} color="black" />
-    <Text className="text-lg ml-2">Meio Ambiente</Text>
-  </TouchableOpacity>
-</Link>
+            <Link href={{ pathname: '/main', params: { busca: 'Meio Ambiente OR Fauna OR flora OR biodiversidade OR Plantas OR Botania' } }} asChild>
+              <TouchableOpacity className="mb-4 flex-row items-center">
+              <Icon name="leaf" size={24} color="black" />
+              <Text className="text-lg ml-2">Ambiente</Text>
+              </TouchableOpacity>
+            </Link>
 
             <TouchableOpacity onPress={fecharCategorias}>
               <Text className="text-red-600 mt-8">Fechar</Text>

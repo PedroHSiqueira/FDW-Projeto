@@ -1,0 +1,2 @@
+export const SUPABASE_URL = "https://dlhvtkurfwpcorneiess.supabase.co"
+export const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRsaHZ0a3VyZndwY29ybmVpZXNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4Mjk5NDgsImV4cCI6MjA2MzQwNTk0OH0.AO-bibyddYiuHg38gaxYY5W_J3JIU-UqpKAbNg05NAM"

@@ -28,7 +28,7 @@ export default function Registro() {
     }
 
     setLoading(false);
-    router.push("/(home)/(Auth)/login/page");
+    router.push("/(home)/main");
   }
 
   return (

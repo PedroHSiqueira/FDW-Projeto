@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const handleBuscar = () => {
     if (termoBusca.trim()) {
-      // router.push(`/noticias/page?busca=${encodeURIComponent(termoBusca.trim())}`);
+      router.push(`/(home)/noticias/page?busca=${encodeURIComponent(termoBusca.trim())}`);
       setTermoBusca("");
     }
   };
@@ -51,21 +51,32 @@ export default function Navbar() {
       <TouchableOpacity onPress={() => router.push("/")}>
         <Image source={require("../../public/logo.png")} style={tw`w-12 h-12`} resizeMode="contain" />
       </TouchableOpacity>
-
-      <View style={tw`flex-row items-center border border-gray-300 rounded-full px-3 py-1 bg-white mx-2`}>
-        <TextInput style={[tw`text-black text-xs py-1`, { width: isLargeScreen ? 200 : 120 }]} placeholder="Buscar..." value={termoBusca} onChangeText={setTermoBusca} onSubmitEditing={handleBuscar} returnKeyType="search" placeholderTextColor="#888" />
-        {termoBusca.length > 0 && (
-          <TouchableOpacity onPress={handleCancelarBusca} style={tw`ml-2`}>
-            <Icon name="times" size={14} color="#888" />
-          </TouchableOpacity>
-        )}
-        <TouchableOpacity onPress={handleBuscar} style={tw`ml-2`}>
-          <Icon name="search" size={16} color="#000" />
-        </TouchableOpacity>
-      </View>
+{!user ? (
+  <></>
+) : (
+  <View style={tw`flex-row items-center border border-gray-300 rounded-full px-3 py-1 bg-white mx-2`}>
+    <TextInput
+      style={[tw`text-black text-xs py-1`, { width: isLargeScreen ? 200 : 120 }]}
+      placeholder="Buscar..."
+      value={termoBusca}
+      onChangeText={setTermoBusca}
+      onSubmitEditing={handleBuscar}
+      returnKeyType="search"
+      placeholderTextColor="#888"
+    />
+    {termoBusca.length > 0 && (
+      <TouchableOpacity onPress={handleCancelarBusca} style={tw`ml-2`}>
+        <Icon name="times" size={14} color="#888" />
+      </TouchableOpacity>
+    )}
+    <TouchableOpacity onPress={handleBuscar} style={tw`ml-2`}>
+      <Icon name="search" size={16} color="#000" />
+    </TouchableOpacity>
+  </View>
+)}
 
       {user ? (
-        <TouchableOpacity onPress={() => router.push("/logada")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
+        <TouchableOpacity onPress={() => router.push("/main")} style={tw`px-3 py-1 border-2 border-[#101829] rounded-full bg-white`}>
           <Text style={tw`text-xs font-bold text-black`}>{user}</Text>
         </TouchableOpacity>
       ) : (
